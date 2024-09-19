@@ -1,0 +1,40 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort-api
+        args: ["--profile", "black", "--filter-files"]
+
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black
+        name: black-api
+        args: [--config, pyproject.toml]
+
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v1.7.7
+    hooks:
+      - id: autoflake
+        name: autoflake
+
+  - repo: https://github.com/milin/giticket
+    rev: v1.3
+    hooks:
+      - id: giticket
+        # (feat|fix|bugfix|feature|hotfix)\/(CORE-[0-9]{1,5}).*
+        args:
+          [
+            '--regex=\w{3,6}-[0-9]{1,5}|\w{3,6}-[nN][oO][nN][eE]',
+            "--format=[{tickets}] {commit_msg}",
+            "--mode=regex_match",
+          ]

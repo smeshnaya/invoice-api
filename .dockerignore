@@ -1,0 +1,7 @@
+*
+!poetry.lock
+!poetry.toml
+!pyproject.toml
+!main.py
+!app/*
+!bin/*
